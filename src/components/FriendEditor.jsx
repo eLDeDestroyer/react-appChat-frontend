@@ -101,9 +101,9 @@ const FriendEditor = () => {
                     <button onClick={handleFriendUpdate} className="w-full bg-blue-500 mt-[2rem] py-2 rounded-md text-white font-semibold hover:bg-blue-600 transition">
                         Simpan Perubahan
                     </button>
-                    <button onClick={handleDeleteFriend} className="w-full bg-red-500 py-2 rounded-md text-white font-semibold hover:bg-red-600 transition">
+                    {/* <button onClick={handleDeleteFriend} className="w-full bg-red-500 py-2 rounded-md text-white font-semibold hover:bg-red-600 transition">
                         Hapus Teman
-                    </button>
+                    </button> */}
                 </div>
             </div>
         </div>
