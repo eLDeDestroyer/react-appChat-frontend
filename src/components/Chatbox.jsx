@@ -12,7 +12,7 @@ const Chatbox = () => {
     const [userId, setUserId] = useState("");
     const [socket, setSocket] = useState(null);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [friendId, setFriendId] = useState(parseInt(id) + 3)
+    const [friendId, setFriendId] = useState(parseInt(id))
 
     // Ambil userId dari token
     const getMe = async () => {

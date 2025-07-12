@@ -27,7 +27,7 @@ const FriendEditor = () => {
         e.preventDefault()
 
         try{
-            const response = await axios.patch(`http://localhost:3000/api/auth/friend/update/${id}`,{name: nameRef.current.value}, {
+            const response = await axios.patch(`http://localhost:3000/api/auth/friend/update/${friend.id}`,{name: nameRef.current.value}, {
                 headers: {
                     "Authorization": `Bearer ${token}`
                 }
