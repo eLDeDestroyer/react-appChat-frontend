@@ -2,6 +2,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import image from "../assets/sigma.jpg"
 import { use, useEffect, useRef, useState } from "react";
 import axios from "axios";
+const apiUrl = import.meta.env.VITE_API_URL;
+
 
 
 const FriendEditor = () => {
@@ -13,7 +15,7 @@ const FriendEditor = () => {
 
 
     const getFriendData = async() => {
-        const response = await axios.get(`http://localhost:3000/api/auth/friend/${id}`, {
+        const response = await axios.get(`${apiUrl}/api/auth/friend/${id}`, {
             headers: {
                 "Authorization": `Bearer ${token}`
             }
@@ -27,7 +29,7 @@ const FriendEditor = () => {
         e.preventDefault()
 
         try{
-            const response = await axios.patch(`http://localhost:3000/api/auth/friend/update/${friend.id}`,{name: nameRef.current.value}, {
+            const response = await axios.patch(`${apiUrl}/api/auth/friend/update/${friend.id}`,{name: nameRef.current.value}, {
                 headers: {
                     "Authorization": `Bearer ${token}`
                 }
@@ -43,7 +45,7 @@ const FriendEditor = () => {
     const handleDeleteFriend = async(e) => {
         e.preventDefault()
         try {
-            const response = await axios.delete(`http://localhost:3000/api/auth/friend/delete`, {
+            const response = await axios.delete(`${apiUrl}/api/auth/friend/delete`, {
                 headers:{
                     "Authorization": `Bearer ${token}`
                 },

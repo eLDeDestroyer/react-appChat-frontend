@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+const apiUrl = import.meta.env.VITE_API_URL;
+
 
 const Login = () => {
     const usernameRef = useRef()
@@ -20,7 +22,7 @@ const Login = () => {
         }
 
         try{
-            const response = await axios.post("http://localhost:3000/api/users/register",data) 
+            const response = await axios.post(`${apiUrl}/api/users/register`,data) 
             window.location.reload()
         } catch(e){
             console.log(e)
@@ -37,7 +39,7 @@ const Login = () => {
         }
 
         try{
-            const response = await axios.post("http://localhost:3000/api/users/login",data) 
+            const response = await axios.post(`${apiUrl}/api/users/login`,data) 
             console.log(response.data.data.token)
             localStorage.setItem("token", response.data.data.token)
             navigate("/dashboard")

@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import image from "../assets/sigma.jpg"
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 const AddFriend = () => {
     const token = localStorage.getItem("token")
@@ -20,7 +21,7 @@ const AddFriend = () => {
         console.log(data)
 
         try{
-            const response = await axios.post("http://localhost:3000/api/auth/friend/add", data, {
+            const response = await axios.post(`${apiUrl}/api/auth/friend/add`, data, {
                 headers: {
                     "Authorization": `Bearer ${token}`
                 }

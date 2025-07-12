@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import image  from "../assets/sigma.jpg";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
+const apiUrl = import.meta.env.VITE_API_URL;
+
 
 const ProfileEditor = () => {
     const token = localStorage.getItem("token")
@@ -11,7 +13,7 @@ const ProfileEditor = () => {
     const [user, setUser] = useState()
 
     const getUser = async() => {
-        const response = await axios.get("http://localhost:3000/api/auth/users/me", {
+        const response = await axios.get(`${apiUrl}/api/auth/users/me`, {
             headers: {
                 "Authorization": `Bearer ${token}`
             }
@@ -24,7 +26,7 @@ const ProfileEditor = () => {
         e.preventDefault()
 
         try{
-            const response = await axios.patch(`http://localhost:3000/api/auth/users/update`, {name:nameRef.current.value},{
+            const response = await axios.patch(`${apiUrl}/api/auth/users/update`, {name:nameRef.current.value},{
                 headers: {
                     "Authorization": `Bearer ${token}`
                 }

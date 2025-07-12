@@ -3,6 +3,8 @@ import image from "../assets/sigma.jpg"
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+const apiUrl = import.meta.env.VITE_API_URL;
+
 
 const Dashboard = () => {
     const token = localStorage.getItem("token")
@@ -11,7 +13,7 @@ const Dashboard = () => {
 
 
     const getFriend = async() => {
-        const response = await axios.get("http://localhost:3000/api/auth/friends", {
+        const response = await axios.get(`${apiUrl}/api/auth/friends`, {
             headers: {
                 "Authorization": `Bearer ${token}`
             }

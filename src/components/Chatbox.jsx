@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useState, useEffect, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+const apiUrl = import.meta.env.VITE_API_URL;
+const apiWsUrl = import.meta.env.VITE_API_WS_URL;
 
 const Chatbox = () => {
     const token = localStorage.getItem("token");
@@ -17,7 +19,7 @@ const Chatbox = () => {
     // Ambil userId dari token
     const getMe = async () => {
         try {
-            const response = await axios.get("http://localhost:3000/api/auth/users/me", {
+            const response = await axios.get(`${apiUrl}/api/auth/users/me`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -32,7 +34,7 @@ const Chatbox = () => {
     // Ambil semua pesan berdasarkan room_id
     const getMessage = async () => {
         try {
-            const response = await axios.get(`http://localhost:3000/api/auth/chats/${id}`, {
+            const response = await axios.get(`${apiUrl}/api/auth/chats/${id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -60,7 +62,7 @@ const Chatbox = () => {
 
         // Kirim via HTTP ke database
         try {
-            const response = await axios.post("http://localhost:3000/api/auth/chats/add", newMessage, {
+            const response = await axios.post(`${apiUrl}/api/auth/chats/add`, newMessage, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -76,7 +78,7 @@ const Chatbox = () => {
     const handleDeleteMessage = async (e) => {
         e.preventDefault();
         try {
-            await axios.delete(`http://localhost:3000/api/auth/chats/delete/${id}`, {
+            await axios.delete(`${apiUrl}/api/auth/chats/delete/${id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -107,7 +109,7 @@ const Chatbox = () => {
     useEffect(() => {
         if (!userId || !id) return;
 
-        const ws = new WebSocket(`ws://localhost:3000/ws/chat?room_id=${id}`);
+        const ws = new WebSocket(`${apiWsUrl}/chat?room_id=${id}`);
 
         ws.onopen = () => {
             console.log("WebSocket connected");
